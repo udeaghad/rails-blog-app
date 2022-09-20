@@ -50,7 +50,7 @@ gem "bootsnap", require: false
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-gem 'annotate', '~> 2.7', '>= 2.7.1'
+# gem 'annotate', '~> 2.7', '>= 2.7.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
