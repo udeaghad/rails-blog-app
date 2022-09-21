@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belong_to :users
+  belongs_to :users, class_name: 'User'
   has_many :comments
   has_many :likes
 end
