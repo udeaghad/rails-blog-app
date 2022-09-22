@@ -50,11 +50,15 @@ gem 'bootsnap', require: false
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-# gem 'annotate', '~> 2.7', '>= 2.7.1'
+gem 'ffi', '~> 1.15', '>= 1.15.5'
 
+# gem 'annotate', '~> 2.7', '>= 2.7.1'
+# gem 'rspec-rails', '~> 6.0.0.rc1'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 6.0.0.rc1'
+  # gem 'rspec-rails'
 end
 
 group :development do
@@ -73,5 +77,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-  gem 'rspec-rails', '~> 6.0.0.rc1'
+  
 end
