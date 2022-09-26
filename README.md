@@ -19,8 +19,10 @@ To get a local copy up and running follow these simple example steps.
  **clone this [repo](https://github.com/udeaghad/rails-blog-app)**
 ### Install
 
-**Install Ruby**
-**Install Rails**
+- **Install Ruby**
+- **Install Rails**
+- **Run bundle install**
+- **Run rails s**
 
 ## Authors
 
