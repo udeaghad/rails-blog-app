@@ -21,8 +21,12 @@ To get a local copy up and running follow these simple example steps.
 
 - **Install Ruby**
 - **Install Rails**
-- **Run bundle install**
-- **Run rails s**
+
+### Usage
+- navigate to the directory **rails-blog-app**
+- Run **bundle install** on your terminal
+- Run **Run rails s** on your terminal
+- Enter **http://localhost:3000/** on your browser to view page
 
 ## Authors
 
