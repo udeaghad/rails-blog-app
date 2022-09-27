@@ -10,5 +10,9 @@ RSpec.describe "Users", type: :request do
     it "renders index " do
       expect(response).to render_template('index')
     end
+
+    it "page contains the correct text" do
+      expect(response.body).to include('Here is a list of all users')
+    end
   end
 end
