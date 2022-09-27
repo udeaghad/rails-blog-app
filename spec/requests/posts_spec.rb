@@ -22,6 +22,10 @@ RSpec.describe "Posts", type: :request do
        expect(response).to have_http_status(200)
     end
 
+    it 'renders show template ' do
+      expect(response).to render_template(:show)
+    end
+
    
   end
 end
