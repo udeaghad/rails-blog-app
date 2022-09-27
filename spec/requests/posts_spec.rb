@@ -10,5 +10,9 @@ RSpec.describe "Posts", type: :request do
     it 'renders index template ' do
       expect(response).to render_template('index')
     end
+
+    it 'page contains the correct text' do
+      expect(response.body).to include('Here is a list of all posts for a given user')
+    end
   end
 end
