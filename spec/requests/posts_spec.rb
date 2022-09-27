@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :request do
-  describe "GET /posts#index" do
-  before(:example) { get user_posts_path(1) }
-    it "works! (checked http status)" do
-       expect(response).to have_http_status(200)
+RSpec.describe 'Posts', type: :request do
+  describe 'GET /posts#index' do
+    before(:example) { get user_posts_path(1) }
+    it 'works! (checked http status)' do
+      expect(response).to have_http_status(200)
     end
 
     it 'renders index template ' do
@@ -16,10 +16,10 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
-  describe "GET /posts#show" do
-  before(:example) { get '/users/1/posts/2'}
-    it "works! (checked http status)" do
-       expect(response).to have_http_status(200)
+  describe 'GET /posts#show' do
+    before(:example) { get '/users/1/posts/2' }
+    it 'works! (checked http status)' do
+      expect(response).to have_http_status(200)
     end
 
     it 'renders show template ' do
@@ -28,6 +28,6 @@ RSpec.describe "Posts", type: :request do
 
     it 'page contains the correct text' do
       expect(response.body).to include('Here is a list of all posts for a given user and for a given post')
-    end   
+    end
   end
 end
