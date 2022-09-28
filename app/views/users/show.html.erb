@@ -1,1 +1,29 @@
 <h1>Here is for a given user</h1>
+
+<div class='user-posts'>
+
+<div class='bio-card'>
+
+  <div class='photo'>
+    <img src='<%= @user_posts.photo %>' alt='photo' />
+  </div>
+
+  <div class='bio-details'>
+    <h2> <%= @user_posts.name %> </h2>
+    <h3> Bio: <%= @user_posts.bio %> </h3>
+    <span>Number of posts: <%= @user_posts.posts_counter %>  </span>
+    
+  </div>
+
+</div>
+<br>
+<% @user_posts.most_recent_posts.each_with_index do |post, index| %>  
+  <div class='post-details'>
+    <span>Post:<%= index+1 %> </span>
+    <h4> Title: <%= link_to post.title, user_posts_path(post) %> </h4>
+    <p> <%=post.text%> </p>
+    <span> Comments: <%= post.comments_counter %> Likes:<%=post.likes_counter%> </span>  
+  </div>
+<% end %>
+
+</div>
