@@ -1,1 +1,25 @@
 <h1>Here is a list of all posts for a given user and for a given post</h1>
+
+<div>
+
+
+<% @post.includes(:users).each do | post | %>
+  <div style='border: 1px solid black;'>
+    <h4>Post by <%= post.users.name %> </h>
+    <span> Comments: <%= post.comments_counter %>  Likes: <%= post.likes_counter %> </span>
+
+    <p> <%= post.text %> </p>
+    
+  </div>
+<% end %>
+</div>
+<div style='border: 1px solid black;'>
+<% @comments.includes(:users).each do |commenter| %>
+  <p> <strong><%= commenter.users.name %>:</strong> <%= commenter.text %> </p>
+
+<% end %>
+
+
+</div>
+
+</div>

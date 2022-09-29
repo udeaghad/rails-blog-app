@@ -1,7 +1,7 @@
 <h1>Here is a list of all posts for a given user</h1>
 
 <div>
-  <div class="bio-card">
+  <div class="bio-card" style='border: 1px solid black;'>
     <img src='<%= @user.photo %>' alt='photo'/>
     <div class='bio-details'>
       <h2>Name: <%= @user.name %> </h2>
@@ -9,20 +9,21 @@
     </div>
   </div>
   <div class='post-details'>
-   <% @posts.includes(:users).each_with_index do |post, index| %>
-    <span>Post:<%= index+1 %> </span>
-    <h3>Title: <%= post.title %> </h3>
-    <p> <%= post.text %> </p>
-    <p> <%= post.id %> </p>
-    <p> <%= post.users_id %> </p>
-    <span> Comments: <%= post.comments_counter %>  Likes: <%= post.likes_counter %> </span>
-    <div> 
-    <%post.most_recent_comments(post.id).each do | commenter |%> 
-     <p> <strong><%=commenter.users.name%> </strong>: <%= commenter.text %> </p>
-     <p> <%= commenter.users_id %> </p>    
+    <% @posts.includes(:users).each_with_index do |post, index| %>
+      <div style='border: 1px solid black;'>
+        <span>Post:<%= index+1 %> </span>
+        <h3>Title: <%= link_to post.title, user_post_path(@user, post) %> </h3>
+        <p> <%= post.text %> </p>
+        
+        <span> Comments: <%= post.comments_counter %>  Likes: <%= post.likes_counter %> </span>
+      </div>
+      <div style='border: 1px solid black;'> 
+        <%post.most_recent_comments(post.id).each do | commenter |%> 
+          <p> <strong><%=commenter.users.name%> </strong>: <%= commenter.text %> </p>
+              
+        <% end %>
+      </div>
     <% end %>
-    </div>
-   <% end %>
   </div>
   
 </div>
