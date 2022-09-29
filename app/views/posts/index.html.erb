@@ -5,7 +5,7 @@
     <img src='<%= @user.photo %>' alt='photo'/>
     <div class='bio-details'>
       <h2>Name: <%= @user.name %> </h2>
-      <span>Number of post:  <%= @user.posts_counter %> </span>
+      <span>Number of post:  <%= @user.posts_counter || 0 %> </span>
     </div>
   </div>
   <div class='post-details'>
@@ -15,7 +15,7 @@
         <h3>Title: <%= link_to post.title, user_post_path(@user, post) %> </h3>
         <p> <%= post.text %> </p>
         
-        <span> Comments: <%= post.comments_counter %>  Likes: <%= post.likes_counter %> </span>
+        <span> Comments: <%= post.comments_counter || 0 %>  Likes: <%= post.likes_counter || 0 %> </span>
       </div>
       <div style='border: 1px solid black;'> 
         <%post.most_recent_comments(post.id).each do | commenter |%> 

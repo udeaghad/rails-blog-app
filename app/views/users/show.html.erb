@@ -11,7 +11,7 @@
   <div class='bio-details'>
     <h2> <%= @user_posts.name %> </h2>
     <h3> Bio: <%= @user_posts.bio %> </h3>
-    <span>Number of posts: <%= @user_posts.posts_counter %>  </span>
+    <span>Number of posts: <%= @user_posts.posts_counter || 0 %>  </span>
     
   </div>
 
@@ -24,8 +24,13 @@
     <p> <%=post.text%> </p>
     
 
-    <span> Comments: <%= post.comments_counter %> Likes:<%=post.likes_counter%> </span>  
+    <span> Comments: <%= post.comments_counter || 0 %> Likes:<%=post.likes_counter || 0 %> </span>  
   </div>
+
+<% end %>
+
+<%= link_to user_posts_path(@user_posts) do%>
+  <button> See all posts </button>
 <% end %>
 
 </div>

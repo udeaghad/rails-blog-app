@@ -6,8 +6,8 @@
 <% @post.includes(:users).each do | post | %>
   <div style='border: 1px solid black;'>
     <h4>Post by <%= post.users.name %> </h>
-    <span> Comments: <%= post.comments_counter %>  Likes: <%= post.likes_counter %> </span>
-
+    <span> Comments: <%= post.comments_counter || 0 %>  Likes: <%= post.likes_counter || 0 %> </span>
+    <h3>Title: <%= post.title %> </h3>
     <p> <%= post.text %> </p>
     
   </div>
