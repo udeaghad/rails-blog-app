@@ -17,9 +17,9 @@
 <div style='border: 1px solid black;'>
 <% @comments.includes(:users).each do |commenter| %>
   <p> <strong><%= commenter.users.name %>:</strong> <%= commenter.text %> </p>
-
+  
 <% end %>
-
+<h3><%= link_to 'Add new comment', new_user_post_comment_path(@comments[0].posts_id) %>  </h3>
 
 </div>
 
