@@ -13,7 +13,7 @@ class Post < ApplicationRecord
     users.increment!(:posts_counter)
   end
 
-  def most_recent_comments
-    comments.limit(5).order(created_at: :desc)
+  def most_recent_comments(id)
+    comments.where(posts_id: id).limit(5).order(created_at: :desc)
   end
 end
