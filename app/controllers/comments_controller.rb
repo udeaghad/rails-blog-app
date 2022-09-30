@@ -7,8 +7,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params.require(:comment).permit(:text).merge(users: current_user,
-                                                                        posts_id: params.require(:post_id)))
+    @comment = Comment.new(comment_params)
+    @comment.users_id = current_user.id
+    @comment.posts_id = post_params
 
     respond_to do |format|
       format.html do
@@ -22,4 +23,14 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+  private
+    def comment_params
+      params.require(:comment).permit(:text)
+    end
+
+  private
+      def post_params
+        params.require(:post_id)
+      end
 end
