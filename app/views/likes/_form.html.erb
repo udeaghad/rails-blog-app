@@ -1,4 +1,4 @@
-<%= form_with url: "/users/#{@post[0].users_id}/posts/#{@post[0].id}/likes", method: :post, local: true do |f|%>
+<%= form_with url: "/users/#{@post[0].user_id}/posts/#{@post[0].id}/likes", method: :post, local: true do |f|%>
   <div class="form-card">     
     <div>
       <%= f.submit "Like" %>

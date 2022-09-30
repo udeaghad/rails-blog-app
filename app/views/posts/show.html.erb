@@ -1,5 +1,5 @@
 <h1>Here is a list of all posts for a given user and for a given post</h1>
-<h3><%= link_to 'Create New Post', new_user_post_path(@post[0].users_id) %>  </h3>
+<h3><%= link_to 'Create New Post', new_user_post_path(@post[0].user_id) %>  </h3>
 
 
 <div>
@@ -19,7 +19,7 @@
   <p> <strong><%= commenter.users.name %>:</strong> <%= commenter.text %> </p>
   
 <% end %>
-<h3><%= link_to 'Add new comment', new_user_post_comment_path(@post[0].users_id,@post[0].id) %>  </h3>
+<h3><%= link_to 'Add new comment', new_user_post_comment_path(@post[0].user_id,@post[0].id) %>  </h3>
 <%= render "likes/form" %>
 </div>
 

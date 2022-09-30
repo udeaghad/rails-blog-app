@@ -24,16 +24,16 @@
           <p> <strong><%=commenter.users.name%> </strong>: <%= commenter.text %> </p>              
         <% end %>
 
-        <span><%= link_to 'Add new comment', new_user_post_comment_path(post.users_id,post.id) %>  </span>
+        <span><%= link_to 'Add new comment', new_user_post_comment_path(post.user_id,post.id) %>  </span>
 
-        <%= form_with url: "/users/#{post.users_id}/posts/#{post.id}/likes", method: :post, local: true do |f|%>
+        <%= form_with url: "/users/#{post.user_id}/posts/#{post.id}/likes", method: :post, local: true do |f|%>
           <div class="form-card">     
             <div>
               <%= f.submit "Like" %>
             </div>
           </div>  
         <% end %>
-        
+
       </div>
       <br>
       
