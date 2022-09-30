@@ -2,8 +2,10 @@ class LikesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
 
-    like = current_user.likes.new(users_id: current_user.id, posts_id: params.require(:post_id))
-
+    like = current_user.likes.new()    
+    like.users_id = current_user.id
+    like.posts_id = post_params
+    
     respond_to do |format|
       format.html do
         if like.save
@@ -16,4 +18,9 @@ class LikesController < ApplicationController
       end
     end
   end
+
+  private
+    def post_params
+      params.require(:post_id)
+    end
 end
