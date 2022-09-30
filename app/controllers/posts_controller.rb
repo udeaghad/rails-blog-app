@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.comments_counter = 0
     @post.likes_counter = 0
-      
 
     respond_to do |format|
       format.html do
@@ -38,7 +37,8 @@ class PostsController < ApplicationController
   end
 
   private
-   def post_params
+
+  def post_params
     params.require(:post).permit(:title, :text)
-   end
+  end
 end

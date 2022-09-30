@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
 
-    like = current_user.likes.new()    
+    like = current_user.likes.new
     like.user_id = current_user.id
     like.post_id = post_params
 
@@ -20,7 +20,8 @@ class LikesController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post_id)
-    end
+
+  def post_params
+    params.require(:post_id)
+  end
 end
