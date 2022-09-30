@@ -22,7 +22,9 @@
           <p> <strong><%=commenter.users.name%> </strong>: <%= commenter.text %> </p>
               
         <% end %>
+        <h3><%= link_to 'Add new comment', new_user_post_comment_path(post.users_id,post.id) %>  </h3>
       </div>
+      
     <% end %>
   </div>
   
