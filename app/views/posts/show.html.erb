@@ -3,10 +3,10 @@
 
 
 <div>
-<% @post.includes(:users).each do | post | %>
+<% @post.includes(:user).each do | post | %>
   
   <div style='border: 1px solid black;'>
-    <h4>Post by <%= post.users.name %> </h>
+    <h4>Post by <%= post.user.name %> </h>
     <span> Comments: <%= post.comments_counter || 0 %>  Likes: <%= post.likes_counter || 0 %> </span>
     <h3>Title: <%= post.title %> </h3>
     <p> <%= post.text %> </p>
@@ -15,8 +15,8 @@
 <% end %>
 </div>
 <div style='border: 1px solid black;'>
-<% @comments.includes(:users).each do |commenter| %>
-  <p> <strong><%= commenter.users.name %>:</strong> <%= commenter.text %> </p>
+<% @comments.includes(:user).each do |commenter| %>
+  <p> <strong><%= commenter.user.name %>:</strong> <%= commenter.text %> </p>
   
 <% end %>
 <h3><%= link_to 'Add new comment', new_user_post_comment_path(@post[0].user_id,@post[0].id) %>  </h3>

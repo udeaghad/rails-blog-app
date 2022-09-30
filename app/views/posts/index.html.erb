@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class='post-details'>
-    <% @post.includes(:users).each_with_index do |post, index| %>
+    <% @post.includes(:user).each_with_index do |post, index| %>
       <div style='border: 1px solid black;'>
         <span>Post:<%= index+1 %> </span>
         <h3>Title: <%= link_to post.title, user_post_path(@user, post) %> </h3>
@@ -21,7 +21,7 @@
       <div style='border: 1px solid black;'> 
 
         <%post.most_recent_comments(post.id).each do | commenter |%> 
-          <p> <strong><%=commenter.users.name%> </strong>: <%= commenter.text %> </p>              
+          <p> <strong><%=commenter.user.name%> </strong>: <%= commenter.text %> </p>              
         <% end %>
 
         <span><%= link_to 'Add new comment', new_user_post_comment_path(post.user_id,post.id) %>  </span>

@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :users, class_name: 'User'
+  belongs_to :user, class_name: 'User'
   has_many :comments, foreign_key: 'post_id'
   has_many :likes, foreign_key: 'post_id'
 
@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   after_create :update_posts_counter
 
   def update_posts_counter
-    users.increment!(:posts_counter)
+    user.increment!(:posts_counter)
   end
 
   def most_recent_comments(id)
