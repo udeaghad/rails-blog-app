@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.users_id = current_user.id
+    @post.user_id = current_user.id
     @post.comments_counter = 0
     @post.likes_counter = 0
       
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.where('id = ?', params[:id])
-    @comments = Comment.where('posts_id = ?', params[:id])
+    @comments = Comment.where('post_id = ?', params[:id])
   end
 
   private

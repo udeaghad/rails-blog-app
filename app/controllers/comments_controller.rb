@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.users_id = current_user.id
-    @comment.posts_id = post_params
+    @comment.user_id = current_user.id
+    @comment.post_id = post_params
 
     respond_to do |format|
       format.html do
