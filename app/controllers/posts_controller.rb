@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.where('id = ?', params[:id])
-    @comments = Comment.where('post_id = ?', params[:id])
+    @comments = Comment.includes(:user).where('post_id = ?', params[:id])
   end
 
   private

@@ -4,7 +4,7 @@ RSpec.describe Post, type: :model do
   before :each do
     @user = User.new(name: 'James Rock', photo: 'https:...', bio: 'I am a Teacher')
   end
-  subject { Post.new(title: 'Politics', text: 'I like politics', users: @user) }
+  subject { Post.new(title: 'Politics', text: 'I like politics', user: @user) }
 
   before { subject.save }
 
