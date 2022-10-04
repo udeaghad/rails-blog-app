@@ -4,10 +4,10 @@ RSpec.describe Comment, type: :model do
   context 'test Comment class' do
     before :each do
       @user = User.new(name: 'James Rock', photo: 'https:...', bio: 'I am a Teacher')
-      @post = Post.new(title: 'Politics', text: 'I like politics', users: @user)
+      @post = Post.new(title: 'Politics', text: 'I like politics', user: @user)
     end
 
-    subject { Comment.new(text: 'Lorem ipsum dolor sit...', users_id: 1, posts: @post) }
+    subject { Comment.new(text: 'Lorem ipsum dolor sit...', user_id: 1, post: @post) }
 
     before { subject.save }
 

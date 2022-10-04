@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
+  before :each do
+    @grace = User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)    
+  end 
   describe 'GET /posts#index' do
-    before(:example) { get user_posts_path(1) }
+    before(:example) { get user_posts_path(@grace) }
     it 'works! (checked http status)' do
       expect(response).to have_http_status(200)
     end
@@ -17,7 +20,14 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'GET /posts#show' do
-    before(:example) { get '/users/1/posts/2' }
+  before :each do
+    @mark = User.create(name: 'Mark', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
+    @mark_post = Post.create(
+      {user: @mark, title: 'Driving', text: 'text for 1', likes_counter: 2, comments_counter: 1}
+      )
+          
+  end
+    before(:example) { get user_post_path(@mark, @mark_post) }
     it 'works! (checked http status)' do
       expect(response).to have_http_status(200)
     end

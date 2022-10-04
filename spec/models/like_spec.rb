@@ -4,9 +4,9 @@ RSpec.describe Like, type: :model do
   context 'test like class' do
     before :each do
       @user = User.new(name: 'James Rock', photo: 'https:...', bio: 'I am a Teacher')
-      @post = Post.new(title: 'Politics', text: 'I like politics', users: @user)
-      @comment = Comment.new(text: 'Lorem ipsum dolor sit...', users: @users, posts: @post)
-      @like = Like.new(posts: @post, users: @user)
+      @post = Post.new(title: 'Politics', text: 'I like politics', user: @user)
+      @comment = Comment.new(text: 'Lorem ipsum dolor sit...', user: @user, post: @post)
+      @like = Like.new(post: @post, user: @user)
     end
 
     it 'returns a new Like object' do
