@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class='post-details'>
-    <% @post.includes(:user).each_with_index do |post, index| %>
+    <% @post.each_with_index do |post, index| %>
       <div style='border: 1px solid black;'>
         <span>Post:<%= index+1 %> </span>
         <h3>Title: <%= link_to post.title, user_post_path(@user, post) %> </h3>

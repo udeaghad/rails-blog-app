@@ -3,7 +3,7 @@
 
 
 <div>
-<% @post.includes(:user).each do | post | %>
+<% @post.each do | post | %>
   
   <div style='border: 1px solid black;'>
     <h4>Post by <%= post.user.name %> </h>
@@ -15,7 +15,7 @@
 <% end %>
 </div>
 <div style='border: 1px solid black;'>
-<% @comments.includes(:user).each do |commenter| %>
+<% @comments.each do |commenter| %>
   <p> <strong><%= commenter.user.name %>:</strong> <%= commenter.text %> </p>
   
 <% end %>
