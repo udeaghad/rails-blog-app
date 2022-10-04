@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Home features' do
+RSpec.describe 'Post#index' do
   before :each do
     @mark = User.create(name: 'Mark', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
     @mark_post = Post.create(
