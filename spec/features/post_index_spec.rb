@@ -53,9 +53,8 @@ RSpec.describe 'Post#index' do
     expect(page).to have_current_path(user_post_path(@mark, @mark_post))
   end
 
- it "displays pagination button if there are more posts than fit on the view." do  
+  it 'displays pagination button if there are more posts than fit on the view.' do
     click_button('Pagination')
-    find(:button, :id => 'pagination')  
- end
-
+    find(:button, id: 'pagination')
+  end
 end
