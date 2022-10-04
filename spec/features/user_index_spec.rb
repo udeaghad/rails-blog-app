@@ -20,7 +20,15 @@ RSpec.describe 'Home features' do
 
   it 'displays profile picture of each user' do
     User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
-    visit root_path
+    visit users_path
     expect(page).to have_css("img[src*='https://unsplash...']")
+  end
+
+  it 'routing' do
+    User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
+    visit users_path
+
+    click_link('Grace')
+    expect(current_path).to have_content('users')
   end
 end
