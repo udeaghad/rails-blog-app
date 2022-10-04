@@ -47,4 +47,15 @@ RSpec.describe 'Post#index' do
     click_link('Driving')
     expect(page).to have_current_path(user_post_path(@mark, @mark_post))
   end
+
+  it 're-directs user to post show page' do
+    click_link('Driving')
+    expect(page).to have_current_path(user_post_path(@mark, @mark_post))
+  end
+
+ it "displays pagination button if there are more posts than fit on the view." do  
+    click_button('Pagination')
+    find(:button, :id => 'pagination')  
+ end
+
 end
