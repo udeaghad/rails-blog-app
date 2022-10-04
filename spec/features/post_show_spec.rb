@@ -6,9 +6,7 @@ RSpec.describe 'Post#show' do
                         bio: 'Teacher from Poland.', posts_counter: 1)
     @george = User.create(name: 'George', photo: 'https://unsplash...',
                           bio: 'Teacher from England.', posts_counter: 0)
-    @mark_post = Post.create(
-      { user: @mark, title: 'Driving', text: 'text for 1', likes_counter: 2, comments_counter: 1 }
-    )
+    @mark_post = Post.create(user: @mark, title: 'Driving', text: 'text for 1', likes_counter: 2, comments_counter: 1)
     Comment.create(text: 'Lorem ipsum dolor sit...', user: @george, post: @mark_post)
   end
 
