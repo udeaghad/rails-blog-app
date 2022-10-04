@@ -25,10 +25,10 @@ RSpec.describe 'Home features' do
   end
 
   it 'routing' do
-    User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
+    grace = User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
     visit users_path
 
     click_link('Grace')
-    expect(current_path).to have_content('users')
+    expect(page).to have_current_path(user_path(grace))
   end
 end
