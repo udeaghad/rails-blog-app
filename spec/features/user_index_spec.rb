@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'User#index' do
-
   before :each do
-    @grace = User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)    
-  end 
+    @grace = User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
+  end
 
   before(:example) { visit root_path }
-  it 'should have a home page' do    
+  it 'should have a home page' do
     expect(page).to have_content('Here is a list of all users')
   end
 

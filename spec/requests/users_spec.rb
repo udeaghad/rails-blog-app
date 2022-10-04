@@ -17,9 +17,9 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET /users#show' do
-  before :each do
-    @grace = User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)    
-  end 
+    before :each do
+      @grace = User.create(name: 'Grace', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
+    end
     before(:example) { get user_path(@grace) }
     it 'works! (checked https status)' do
       expect(response).to have_http_status(200)

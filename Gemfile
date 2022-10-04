@@ -80,4 +80,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "bullet", "~> 7.0"
+gem 'bullet', '~> 7.0'
