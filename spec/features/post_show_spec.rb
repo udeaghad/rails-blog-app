@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Post#show' do
   before :each do
-    @mark = User.create(name: 'Mark', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
-    @george = User.create(name: 'George', photo: 'https://unsplash...', bio: 'Teacher from England.', posts_counter: 0)
+    @mark = User.create(name: 'Mark', photo: 'https://unsplash...',
+                        bio: 'Teacher from Poland.', posts_counter: 1)
+    @george = User.create(name: 'George', photo: 'https://unsplash...',
+                          bio: 'Teacher from England.', posts_counter: 0)
     @mark_post = Post.create(
       { user: @mark, title: 'Driving', text: 'text for 1', likes_counter: 2, comments_counter: 1 }
     )
