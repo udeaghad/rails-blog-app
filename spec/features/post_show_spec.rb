@@ -1,34 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe 'Home features' do
-  it 'should have a home page' do
-    visit root_path
-    expect(page).to have_content('Welcome to the home page')
+  before :each do
+    @mark = User.create(name: 'Mark', photo: 'https://unsplash...', bio: 'Teacher from Poland.', posts_counter: 1)
+    @george = User.create(name: 'George', photo: 'https://unsplash...', bio: 'Teacher from England.', posts_counter: 0)
+    @mark_post = Post.create(
+      {user: @mark, title: 'Driving', text: 'text for 1', likes_counter: 2, comments_counter: 1}
+      )
+      Comment.create(text: 'Lorem ipsum dolor sit...', user: @george, post: @mark_post)       
   end
-  it 'displays all users names' do
-    User.create(name: 'Mike', photo: 'https://st.depositphotos.com/1002314/3418/i/950/depositphotos_34185209-stoc
-  k-photo-african-business-man.jpg', bio: 'Teacher from Poland.', postscounter: 9)
-    visit root_path
 
-    expect(page).to have_content('Mike')
-  end
-  it 'displays all users posts' do
-    User.create(name: 'Mike', photo: 'https://st.depositphotos.com/1002314/3418/i/950/depositphotos_34185209-stoc
-   k-photo-african-business-man.jpg', bio: 'Teacher from Poland.', postscounter: 9)
-    visit root_path
+ 
 
-    expect(page).to have_content(9)
+  before(:example) { visit user_post_path(@mark, @mark_post) }
+
+  it 'displays the post title' do    
+    expect(page).to have_content("Title: Driving")
   end
-  it 'displays all users pictures with correct alt texts' do
-    User.create(name: 'Mike', photo: 'https://man.jpg', bio: 'Teacher from Poland.', postscounter: 9)
-    visit root_path
-    find('img[alt="Mike"]')
+
+  it 'displays who wrote the post' do    
+    expect(page).to have_content("Post by Mark")
   end
-  it 'displays a link to see Profile of each user' do
-    User.create(name: 'Mike', photo: 'https://st.depositphotos.com/1002314/3418/i/950/depositphotos_34185209-stoc
-   k-photo-african-business-man.jpg', bio: 'Teacher from Poland.', postscounter: 9)
-    visit root_path
-    click_link('See Profile')
-    expect(page).to have_content('Teacher from Poland')
+
+  it 'displays the number of comments' do    
+    expect(page).to have_content("Comments: 2")
   end
+
+  it 'displays the number of likes' do    
+    expect(page).to have_content("Likes: 2")
+  end
+
+  it 'displays the body of the post' do    
+    expect(page).to have_content("text for 1")
+  end
+
+  it 'displays the username of each commenter' do    
+    expect(page).to have_content("George")
+  end
+
+  it 'displays the comment by each commentor' do    
+    expect(page).to have_content("Lorem ipsum")
+  end
+
 end
