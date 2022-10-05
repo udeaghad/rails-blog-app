@@ -1,6 +1,7 @@
 <h1>Here is for a given user</h1>
 <% if user_signed_in?%>
  <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
+ 
  <% else %>
 <%= render 'layouts/devise_flash' %> 
  <% end %>
