@@ -1,4 +1,10 @@
 <h1>Here is a list of all posts for a given user and for a given post</h1>
+<% if user_signed_in?%>
+ <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
+ <% else %>
+<%= render 'layouts/devise_flash' %> 
+ <% end %>
+ 
 <h3><%= link_to 'Create New Post', new_user_post_path(@post[0].user_id) %>  </h3>
 
 

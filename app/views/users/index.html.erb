@@ -1,5 +1,10 @@
 <h1>Here is a list of all users</h1>
-
+<% if user_signed_in?%>
+ <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
+ <% else %>
+<%= render 'layouts/devise_flash' %> 
+ <% end %>
+ 
 <div class='all-users'>
 <% @users.each do |user| %>
   <section class='user-details' style='border: 1px solid black;'>
