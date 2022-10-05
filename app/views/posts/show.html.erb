@@ -22,7 +22,12 @@
 </div>
 <div style='border: 1px solid black;'>
 <% @comments.each do |commenter| %>
-  <p> <strong><%= commenter.user.name %>:</strong> <%= commenter.text %> </p>
+  <p> 
+    <strong>
+      <%= commenter.user.name %>:
+    </strong> <%= commenter.text %> 
+    <%= link_to "Edit", edit_user_post_comment_path(commenter.user_id, commenter.post_id, commenter.id)%>
+  </p>
   
 <% end %>
 <h3><%= link_to 'Add new comment', new_user_post_comment_path(@post[0].user_id,@post[0].id) %>  </h3>

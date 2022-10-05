@@ -30,7 +30,8 @@
     <p> <%=post.text%> </p>
     
 
-    <span> Comments: <%= post.comments_counter || 0 %> Likes:<%=post.likes_counter || 0 %> </span>  
+    <span> Comments: <%= post.comments_counter || 0 %> Likes:<%=post.likes_counter || 0 %> </span> 
+    <%= link_to "Edit", edit_user_post_path(post.user_id, post.id)%> 
   </div>
 
 <% end %>

@@ -38,6 +38,23 @@ class PostsController < ApplicationController
     @comments = Comment.includes(:user).where('post_id = ?', params[:id])
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+      if @post.update(post_params)
+        flash[:success] = "Post was successfully updated"
+        redirect_to user_path(@post.user_id)
+      else
+        flash[:error] = "Something went wrong"
+        render 'edit'
+      end
+  end
+  
+  
+
   private
 
   def post_params

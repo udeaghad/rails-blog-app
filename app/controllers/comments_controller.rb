@@ -25,6 +25,22 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+  
+  def update
+    @comment = Comment.find(params[:id])
+      if @comment.update(comment_params)
+        flash[:success] = "Object was successfully updated"
+        redirect_to user_post_path(@comment.user_id, @comment.post)
+      else
+        flash[:error] = "Something went wrong"
+        render 'edit'
+      end
+  end
+  
+
   private
 
   def comment_params

@@ -1,4 +1,10 @@
 <h1>Here is a list of all posts for a given user</h1>
+
+<% if user_signed_in?%>
+ <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
+ <% else %>
+<%= render 'layouts/devise_flash' %> 
+ <% end %>
  
 <h3><%= link_to 'Create New Post', new_user_post_path(@user) %>  </h3>
 <div>
@@ -22,7 +28,8 @@
       <div style='border: 1px solid black;'> 
 
         <%post.most_recent_comments(post.id).each do | commenter |%> 
-          <p> <strong><%=commenter.user.name%> </strong>: <%= commenter.text %> </p>              
+          <p> <strong><%=commenter.user.name%> </strong>: <%= commenter.text %> <%= link_to "Edit", edit_user_post_comment_path(post.user_id, post.id, commenter.id)%> </p>  
+                    
         <% end %>
 
         <span><%= link_to 'Add new comment', new_user_post_comment_path(post.user_id,post.id) %>  </span>

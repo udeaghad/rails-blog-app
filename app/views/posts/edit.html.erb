@@ -1,4 +1,5 @@
-<%= form_with model: @post, url: user_posts_path, method: :post, local: true do |f|%>
+<h2>Edit Post</h2>
+<%= form_with model: @post, url: user_post_path, method: :put, local: true do |f|%>
 <div class="form-card">
   <div>
     <%= f.label :title %>
