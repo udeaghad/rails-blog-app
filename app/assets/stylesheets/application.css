@@ -13,37 +13,31 @@
  *= require_tree .
  *= require_self
  */
- .form-container {  
+.form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
- }
+}
 
- .name-field,
- .bio-field,
- .photo-field,
- .email-field,
- .pwd-field,
- .btn-submit {
+.name-field,
+.bio-field,
+.photo-field,
+.email-field,
+.pwd-field,
+.btn-submit {
   width: 500px;
- }
+}
 
- .field {
+.field {
   margin-bottom: 10px;
- }
+}
 
- .login-txt {
+.login-txt {
   text-align: center;
- }
+}
 
- a {
+a {
   text-align: center;
- }
+}
 
- .form-container {
-  
- }
-
- 
