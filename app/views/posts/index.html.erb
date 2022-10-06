@@ -7,8 +7,11 @@
  <% end %>
  
 <h3><%= link_to 'Create New Post', new_user_post_path(@user) %>  </h3>
+
 <%= link_to "Back", user_path(@user) %>
+
 <div>
+
   <div class="bio-card" style='border: 1px solid black;'>
     <img src='<%= @user.photo %>' alt='photo'/>
     <div class='bio-details'>
@@ -16,6 +19,7 @@
       <span>Number of post:  <%= @user.posts_counter || 0 %> </span>
     </div>
   </div>
+
   <div class='post-details'>
     <% @post.each_with_index do |post, index| %>
       <div style='border: 1px solid black;'>
@@ -29,7 +33,12 @@
       <div style='border: 1px solid black;'> 
 
         <%post.most_recent_comments(post.id).each do | commenter |%> 
-          <p> <strong><%=commenter.user.name%> </strong>: <%= commenter.text %> <%= link_to "Edit", edit_user_post_comment_path(post.user_id, post.id, commenter.id)%> </p>  
+          <p> 
+          <strong><%=commenter.user.name%> </strong>: <%= commenter.text %> 
+          <% if can? :update, commenter%>
+          <%= link_to "Edit", edit_user_post_comment_path(post.user_id, post.id, commenter.id)%> 
+          <% end %>
+          </p>  
                     
         <% end %>
 

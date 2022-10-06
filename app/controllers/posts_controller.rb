@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
@@ -36,6 +37,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.where('id = ?', params[:id])
     @comments = Comment.includes(:user).where('post_id = ?', params[:id])
+    authorize! :read, @post
+    authorize! :read, @comments
   end
 
   def edit
@@ -44,6 +47,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    authorize! :update, @post
       if @post.update(post_params)
         flash[:success] = "Post was successfully updated"
         redirect_to user_path(@post.user_id)
@@ -56,7 +60,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.includes(:user).find(params[:id])
     @post.user.decrement!(:posts_counter)
-
+    authorize! :destroy, @post
     if @post.destroy
       flash[:success] = 'Post was successfully deleted.'
       redirect_to user_path(@post.user_id)

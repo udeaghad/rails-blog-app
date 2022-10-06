@@ -1,4 +1,5 @@
 <h1>Here is a list of all posts for a given user and for a given post</h1>
+
 <% if user_signed_in?%>
  <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
  <% else %>
@@ -7,9 +8,10 @@
  
 <h3><%= link_to 'Create New Post', new_user_post_path(@post[0].user_id) %>  </h3>
 
+<%= link_to "Back", user_posts_path(@post[0].user_id) %>
 
 <div>
-<%= link_to "Back", user_posts_path(@post[0].user_id) %>
+
 <% @post.each do | post | %>
   
   <div style='border: 1px solid black;'>
@@ -17,7 +19,9 @@
     <span> Comments: <%= post.comments_counter || 0 %>  Likes: <%= post.likes_counter || 0 %> </span>
     <h3>Title: <%= post.title %> </h3>
     <p> <%= post.text %> </p>
+    <% if can? :destroy, @post%>
     <%= button_to "Delete Post", "/users/#{post.user_id}/posts/#{post.id}", method: :delete, data: {confirm: "Are you sure you wantto delete post"}%>
+    <% end %>
   </div>
 <% end %>
 </div>
@@ -26,9 +30,15 @@
   <p> 
     <strong>
       <%= commenter.user.name %>:
-    </strong> <%= commenter.text %> 
+    </strong> <%= commenter.text %>
+
+    <% if can? :update, commenter %>
     <%= link_to "Edit", edit_user_post_comment_path(commenter.user_id, commenter.post_id, commenter.id)%>
+    <% end %>
+
+    <% if can? :destroy, commenter %>
     <%= button_to "Delete Comment", "/users/#{commenter.user_id}/posts/#{commenter.post_id}/comments/#{commenter.id}", method: :delete, data: {confirm: "Are you sure you wantto delete post"}%>
+    <% end %>
   </p>
   
 <% end %>

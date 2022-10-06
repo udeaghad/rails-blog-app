@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
+
   def new
     @comment = Comment.new
     respond_to do |format|
@@ -31,6 +33,7 @@ class CommentsController < ApplicationController
   
   def update
     @comment = Comment.find(params[:id])
+    authorize! :update, @comment
       if @comment.update(comment_params)
         flash[:success] = "Object was successfully updated"
         redirect_to user_post_path(@comment.user_id, @comment.post)
@@ -43,6 +46,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.includes(:post).find(params[:id])
     @comment.post.decrement!(:comments_counter)
+    authorize! :destroy, @comment
     if @comment.destroy
       flash[:success] = 'Object was successfully deleted.'
       redirect_to user_post_path(@comment.user_id, @comment.post_id)
