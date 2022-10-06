@@ -30,17 +30,17 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
   end
-  
+
   def update
     @comment = Comment.find(params[:id])
     authorize! :update, @comment
-      if @comment.update(comment_params)
-        flash[:success] = "Object was successfully updated"
-        redirect_to user_post_path(@comment.user_id, @comment.post)
-      else
-        flash[:error] = "Something went wrong"
-        render 'edit'
-      end
+    if @comment.update(comment_params)
+      flash[:success] = 'Object was successfully updated'
+      redirect_to user_post_path(@comment.user_id, @comment.post)
+    else
+      flash[:error] = 'Something went wrong'
+      render 'edit'
+    end
   end
 
   def destroy
@@ -49,14 +49,11 @@ class CommentsController < ApplicationController
     authorize! :destroy, @comment
     if @comment.destroy
       flash[:success] = 'Object was successfully deleted.'
-      redirect_to user_post_path(@comment.user_id, @comment.post_id)
     else
       flash[:error] = 'Something went wrong'
-      redirect_to user_post_path(@comment.user_id, @comment.post_id)
     end
+    redirect_to user_post_path(@comment.user_id, @comment.post_id)
   end
-  
-  
 
   private
 

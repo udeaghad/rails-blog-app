@@ -48,29 +48,26 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     authorize! :update, @post
-      if @post.update(post_params)
-        flash[:success] = "Post was successfully updated"
-        redirect_to user_path(@post.user_id)
-      else
-        flash[:error] = "Something went wrong"
-        render 'edit'
-      end
+    if @post.update(post_params)
+      flash[:success] = 'Post was successfully updated'
+      redirect_to user_path(@post.user_id)
+    else
+      flash[:error] = 'Something went wrong'
+      render 'edit'
+    end
   end
-  
+
   def destroy
     @post = Post.includes(:user).find(params[:id])
     @post.user.decrement!(:posts_counter)
     authorize! :destroy, @post
     if @post.destroy
       flash[:success] = 'Post was successfully deleted.'
-      redirect_to user_path(@post.user_id)
     else
       flash[:error] = 'Something went wrong'
-      redirect_to user_path(@post.user_id)
     end
+    redirect_to user_path(@post.user_id)
   end
-  
-  
 
   private
 
