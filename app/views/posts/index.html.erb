@@ -7,6 +7,7 @@
  <% end %>
  
 <h3><%= link_to 'Create New Post', new_user_post_path(@user) %>  </h3>
+<%= link_to "Back", user_path(@user) %>
 <div>
   <div class="bio-card" style='border: 1px solid black;'>
     <img src='<%= @user.photo %>' alt='photo'/>

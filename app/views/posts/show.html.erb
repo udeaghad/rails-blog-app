@@ -9,10 +9,11 @@
 
 
 <div>
+<%= link_to "Back", user_posts_path(@post[0].user_id) %>
 <% @post.each do | post | %>
   
   <div style='border: 1px solid black;'>
-    <h4>Post by <%= post.user.name %> </h>
+    <h4>Post by <%= post.user.name %> </h4>
     <span> Comments: <%= post.comments_counter || 0 %>  Likes: <%= post.likes_counter || 0 %> </span>
     <h3>Title: <%= post.title %> </h3>
     <p> <%= post.text %> </p>
