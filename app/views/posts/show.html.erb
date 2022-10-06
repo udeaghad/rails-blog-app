@@ -16,7 +16,7 @@
     <span> Comments: <%= post.comments_counter || 0 %>  Likes: <%= post.likes_counter || 0 %> </span>
     <h3>Title: <%= post.title %> </h3>
     <p> <%= post.text %> </p>
-    
+    <%= button_to "Delete", "/users/#{post.user_id}/posts/#{post.id}", method: :delete, data: {confirm: "Are you sure you wantto delete post"}%>
   </div>
 <% end %>
 </div>
@@ -27,6 +27,7 @@
       <%= commenter.user.name %>:
     </strong> <%= commenter.text %> 
     <%= link_to "Edit", edit_user_post_comment_path(commenter.user_id, commenter.post_id, commenter.id)%>
+    
   </p>
   
 <% end %>

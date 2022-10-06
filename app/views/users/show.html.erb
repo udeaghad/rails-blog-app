@@ -18,8 +18,7 @@
     <h2> <%= @user_posts.name %> </h2>
     <h3> Bio: <%= @user_posts.bio %> </h3>
     <span>Number of posts: <%= @user_posts.posts_counter || 0 %>  </span>
-    
-  </div>
+    </div>
 
 </div>
 <br>
@@ -32,6 +31,7 @@
 
     <span> Comments: <%= post.comments_counter || 0 %> Likes:<%=post.likes_counter || 0 %> </span> 
     <%= link_to "Edit", edit_user_post_path(post.user_id, post.id)%> 
+    
   </div>
 
 <% end %>
