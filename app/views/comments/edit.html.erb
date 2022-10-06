@@ -1,0 +1,16 @@
+<h2>Edit Comment</h2>
+
+<%= form_with model: @comment, url: user_post_comment_path, method: :put, local: true do |f|%>
+  <div class="form-card">
+     
+    <div>
+      <%= f.label :text %>
+      <%= f.text_area :text %>
+    </div>
+  
+    <div>
+      <%= f.submit  %>
+    </div>
+    </div>
+  
+  <% end %>

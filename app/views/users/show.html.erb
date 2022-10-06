@@ -1,11 +1,14 @@
 <h1>Here is for a given user</h1>
 <% if user_signed_in?%>
- <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
- 
+ <div><%= button_to link_to 'Sign Out', destroy_user_session_path, method: :delete %></div> 
  <% else %>
 <%= render 'layouts/devise_flash' %> 
  <% end %>
+
 <h3><%= link_to 'Create New Post', new_user_post_path(@user_posts) %>  </h3>
+
+<%= link_to "Back", users_path %>
+
 <div class='user-posts'>
 
 <div class='bio-card'  style='border: 1px solid black;'>
@@ -18,19 +21,26 @@
     <h2> <%= @user_posts.name %> </h2>
     <h3> Bio: <%= @user_posts.bio %> </h3>
     <span>Number of posts: <%= @user_posts.posts_counter || 0 %>  </span>
-    
-  </div>
+    </div>
 
 </div>
 <br>
+
 <% @user_posts.most_recent_posts.each_with_index do |post, index| %>  
   <div class='post-details' style='border: 1px solid black;'>
     <span>Post:<%= index+1 %> </span>
     <h4> Title: <%= link_to post.title, user_post_path(post.user_id, post.id ) %> </h4>
-    <p> <%=post.text%> </p>
+    <p> 
+    <%=post.text%> 
+     <% if can? :update, post%>
+    <%= link_to "Edit Post", edit_user_post_path(post.user_id, post.id)%> 
+    <% end %>
+    </p>
     
 
-    <span> Comments: <%= post.comments_counter || 0 %> Likes:<%=post.likes_counter || 0 %> </span>  
+    <span> Comments: <%= post.comments_counter || 0 %> Likes:<%=post.likes_counter || 0 %> </span> 
+   
+    
   </div>
 
 <% end %>

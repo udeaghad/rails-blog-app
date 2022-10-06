@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
+
   def new
     @comment = Comment.new
     respond_to do |format|
@@ -23,6 +25,34 @@ class CommentsController < ApplicationController
         end
       end
     end
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    authorize! :update, @comment
+    if @comment.update(comment_params)
+      flash[:success] = 'Object was successfully updated'
+      redirect_to user_post_path(@comment.user_id, @comment.post)
+    else
+      flash[:error] = 'Something went wrong'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @comment = Comment.includes(:post).find(params[:id])
+    @comment.post.decrement!(:comments_counter)
+    authorize! :destroy, @comment
+    if @comment.destroy
+      flash[:success] = 'Object was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to user_post_path(@comment.user_id, @comment.post_id)
   end
 
   private
