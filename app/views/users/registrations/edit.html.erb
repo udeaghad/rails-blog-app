@@ -18,6 +18,11 @@
     <%= f.text_field :photo %>
   </div>
 
+   <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, ["user", "admin"], selected: "user" %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

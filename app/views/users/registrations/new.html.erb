@@ -23,7 +23,10 @@
     <%= f.text_field :photo, class: "photo-field" %>
   </div>
 
-
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, ["user", "admin"], selected: "user" %>
+  </div>
 
   <div >
     <%= f.label :email %><br />
