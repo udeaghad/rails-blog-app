@@ -39,6 +39,19 @@ class CommentsController < ApplicationController
         render 'edit'
       end
   end
+
+  def destroy
+    @comment = Comment.includes(:post).find(params[:id])
+    @comment.post.decrement!(:comments_counter)
+    if @comment.destroy
+      flash[:success] = 'Object was successfully deleted.'
+      redirect_to user_post_path(@comment.user_id, @comment.post_id)
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to user_post_path(@comment.user_id, @comment.post_id)
+    end
+  end
+  
   
 
   private
