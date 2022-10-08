@@ -9,6 +9,17 @@ Rails.application.routes.draw do
           resources :comments, only: [:new, :create, :edit, :update, :destroy]
           resources :likes, only: [:create]
         end              
-    end    
+    end
+    
+    namespace :api do
+      namespace :v1 do
+        post "/sign_in", to: 'users#sign_in'
+        resources :users, only: [:index] do        
+          resources :posts, only: [:index, :show] do
+            resources :comments, only: [:index, :create]
+          end
+        end
+      end
+    end
 
   end
