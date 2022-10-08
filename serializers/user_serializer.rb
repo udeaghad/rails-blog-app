@@ -1,4 +1,4 @@
-class UserSerializer < ActiveModel::Serializer 
+class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :bio
 
   has_many :posts, foreign_key: 'user_id'

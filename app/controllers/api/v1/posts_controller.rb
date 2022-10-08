@@ -4,7 +4,5 @@ class Api::V1::PostsController < ApplicationController
     @post = @user.posts
 
     render json: @post
-    
   end
-  
 end

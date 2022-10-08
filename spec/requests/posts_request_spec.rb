@@ -2,7 +2,6 @@
 require 'swagger_helper'
 
 describe 'Blogs API' do
-
   # path '/blogs' do
 
   #   post 'Creates a blog' do
@@ -30,7 +29,6 @@ describe 'Blogs API' do
   # end
 
   path '/api/v1/users/{id}/posts' do
-
     get 'Retrieves a post' do
       tags 'Posts'
       produces 'application/json', 'application/xml'
@@ -38,12 +36,12 @@ describe 'Blogs API' do
 
       response '200', 'post found' do
         schema type: :object,
-          properties: {
-            id: { type: :integer },
-           title: { type: :string },
-            text: { type: :text }
-          },
-          required: [ 'id', 'title', 'text' ]
+               properties: {
+                 id: { type: :integer },
+                 title: { type: :string },
+                 text: { type: :text }
+               },
+               required: %w[id title text]
 
         let(:id) { Post.create(title: 'foo', text: 'bar').id }
         run_test!
@@ -55,14 +53,13 @@ describe 'Blogs API' do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
+        let(:Accept) { 'application/foo' }
         run_test!
       end
     end
   end
 
   path '/api/v1/users/{id}/posts/{id}/comments' do
-
     get 'Retrieves a comment by a user' do
       tags 'Comments'
       produces 'application/json', 'application/xml'
@@ -70,12 +67,12 @@ describe 'Blogs API' do
 
       response '200', 'post found' do
         schema type: :object,
-          properties: {
-            id: { type: :integer },
-          
-            text: { type: :text }
-          },
-          required: [ 'id','text' ]
+               properties: {
+                 id: { type: :integer },
+
+                 text: { type: :text }
+               },
+               required: %w[id text]
 
         let(:id) { Comment.create(text: 'bar').id }
         run_test!
@@ -87,7 +84,7 @@ describe 'Blogs API' do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
+        let(:Accept) { 'application/foo' }
         run_test!
       end
     end
